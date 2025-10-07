@@ -1,0 +1,24 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# envs / secrets
+.env
+frontend/.env
+.env.local
+
+# Node
+node_modules/
+build/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Other
+*.log
