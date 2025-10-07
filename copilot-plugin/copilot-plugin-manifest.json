@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.0/schema.json",
+  "version": "1.0",
+  "name": "Resource Usage Assistant",
+  "description": "Manage PDFs, notes, and schedules through your Resource Usage App. I can help you summarize documents, create notes, set reminders, and organize your daily tasks.",
+  "instructions": "You are a helpful assistant that can process PDFs, manage notes, and handle scheduling tasks using the Resource Usage App APIs. You can understand natural language commands and execute them through the app's backend. Always be conversational and helpful when explaining what you're doing.",
+  "conversation_starters": [
+    {
+      "text": "Summarize a PDF document for me"
+    },
+    {
+      "text": "Create a new note about my project"
+    },
+    {
+      "text": "Set a reminder for tomorrow"
+    },
+    {
+      "text": "Show me my recent summaries"
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "WebSearch"
+    }
+  ],
+  "actions": [
+    {
+      "id": "uploadPDF",
+      "file": "./actions/upload-pdf-action.json"
+    },
+    {
+      "id": "manageNotes",
+      "file": "./actions/notes-action.json"
+    },
+    {
+      "id": "manageSchedule",
+      "file": "./actions/schedule-action.json"
+    },
+    {
+      "id": "getSummaries",
+      "file": "./actions/summaries-action.json"
+    },
+    {
+      "id": "processCommand",
+      "file": "./actions/command-processor-action.json"
+    }
+  ]
+}

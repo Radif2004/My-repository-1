@@ -1,0 +1,215 @@
+/* Custom styles for the Resource Usage App */
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* File upload area hover effect */
+.file-upload-area:hover {
+  border-color: #3b82f6;
+  background-color: #f8fafc;
+}
+
+/* Animation for loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors;
+}
+
+.btn-success {
+  @apply bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors;
+}
+
+.btn-danger {
+  @apply bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors;
+}
+
+/* Custom input styles */
+.input-primary {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors;
+}
+
+/* Status indicators */
+.status-online {
+  @apply w-3 h-3 bg-green-500 rounded-full;
+}
+
+.status-offline {
+  @apply w-3 h-3 bg-red-500 rounded-full;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow;
+}
+
+.card-header {
+  @apply px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-lg;
+}
+
+.card-body {
+  @apply px-6 py-4;
+}
+
+/* Summary styles */
+.summary-offline {
+  @apply bg-gray-50 border-l-4 border-gray-400 p-4 rounded-r-lg;
+}
+
+.summary-online {
+  @apply bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg;
+}
+
+/* Schedule item styles */
+.schedule-item {
+  @apply border rounded-lg p-4 hover:bg-gray-50 transition-colors;
+}
+
+.schedule-item.completed {
+  @apply bg-green-50 border-green-200;
+}
+
+.schedule-item.upcoming {
+  @apply bg-yellow-50 border-yellow-200;
+}
+
+/* Notification styles */
+.notification-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.notification-badge.reminder {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.notification-badge.task {
+  @apply bg-orange-100 text-orange-800;
+}
+
+/* Custom focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+/* Responsive text sizes */
+.text-responsive {
+  @apply text-sm md:text-base lg:text-lg;
+}
+
+/* Grid layout for responsive design */
+.grid-responsive {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* File upload drag and drop styles */
+.file-upload-zone {
+  @apply border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-all duration-300 ease-in-out;
+}
+
+.file-upload-zone:hover {
+  @apply border-blue-400 bg-blue-50;
+}
+
+.file-upload-zone.drag-over {
+  @apply border-blue-500 bg-blue-100;
+}
+
+/* Custom utility classes */
+.text-ellipsis {
+  @apply truncate;
+}
+
+.shadow-soft {
+  box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    @apply bg-gray-900 text-white;
+  }
+  
+  .dark-mode .card {
+    @apply bg-gray-800 border-gray-700;
+  }
+  
+  .dark-mode .input-primary {
+    @apply bg-gray-700 border-gray-600 text-white;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
+  
+  .print-only {
+    display: block;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    @apply border-2 border-white;
+  }
+  
+  .input-primary {
+    @apply border-2 border-gray-600;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

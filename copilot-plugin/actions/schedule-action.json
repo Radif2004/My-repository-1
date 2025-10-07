@@ -1,0 +1,163 @@
+{
+  "type": "http",
+  "auth": {
+    "type": "apiKey",
+    "apiKey": {
+      "name": "X-API-Key",
+      "location": "header"
+    }
+  },
+  "definition": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Schedule Management API",
+      "version": "1.0.0",
+      "description": "Create and manage reminders and tasks"
+    },
+    "servers": [
+      {
+        "url": "https://your-api-domain.com"
+      }
+    ],
+    "paths": {
+      "/api/schedule": {
+        "get": {
+          "summary": "Get all schedules",
+          "description": "Retrieve all scheduled reminders and tasks",
+          "operationId": "getSchedules",
+          "responses": {
+            "200": {
+              "description": "Schedules retrieved successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "scheduled_time": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "notification_type": {
+                          "type": "string",
+                          "enum": ["reminder", "task"]
+                        },
+                        "is_completed": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new schedule",
+          "description": "Create a new reminder or task",
+          "operationId": "createSchedule",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Title of the reminder/task"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Description of the reminder/task"
+                    },
+                    "scheduled_time": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "When to trigger the reminder/task"
+                    },
+                    "notification_type": {
+                      "type": "string",
+                      "enum": ["reminder", "task"],
+                      "description": "Type of notification"
+                    }
+                  },
+                  "required": ["title", "description", "scheduled_time", "notification_type"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Schedule created successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/schedule/upcoming": {
+        "get": {
+          "summary": "Get upcoming schedules",
+          "description": "Get schedules for the next 24 hours",
+          "operationId": "getUpcomingSchedules",
+          "responses": {
+            "200": {
+              "description": "Upcoming schedules retrieved successfully"
+            }
+          }
+        }
+      },
+      "/api/schedule/{id}/complete": {
+        "put": {
+          "summary": "Mark schedule as completed",
+          "description": "Mark a task or reminder as completed",
+          "operationId": "completeSchedule",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "Schedule ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Schedule marked as completed"
+            },
+            "404": {
+              "description": "Schedule not found"
+            }
+          }
+        }
+      }
+    }
+  }
+}

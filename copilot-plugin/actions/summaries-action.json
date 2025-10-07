@@ -1,0 +1,95 @@
+{
+  "type": "http",
+  "auth": {
+    "type": "apiKey",
+    "apiKey": {
+      "name": "X-API-Key",
+      "location": "header"
+    }
+  },
+  "definition": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Summaries API",
+      "version": "1.0.0",
+      "description": "Retrieve and manage document summaries"
+    },
+    "servers": [
+      {
+        "url": "https://your-api-domain.com"
+      }
+    ],
+    "paths": {
+      "/api/summaries": {
+        "get": {
+          "summary": "Get all summaries",
+          "description": "Retrieve all PDF and note summaries",
+          "operationId": "getSummaries",
+          "responses": {
+            "200": {
+              "description": "Summaries retrieved successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "source_type": {
+                          "type": "string",
+                          "enum": ["pdf", "note"]
+                        },
+                        "source_id": {
+                          "type": "string"
+                        },
+                        "summary_offline": {
+                          "type": "string"
+                        },
+                        "summary_online": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/refresh-summary/{id}": {
+        "post": {
+          "summary": "Refresh summary with AI",
+          "description": "Get an updated AI-powered summary when online",
+          "operationId": "refreshSummary",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "Summary ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Summary refreshed successfully"
+            },
+            "404": {
+              "description": "Summary not found"
+            }
+          }
+        }
+      }
+    }
+  }
+}

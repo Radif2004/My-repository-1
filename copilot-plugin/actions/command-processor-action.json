@@ -1,0 +1,79 @@
+{
+  "type": "http",
+  "auth": {
+    "type": "apiKey",
+    "apiKey": {
+      "name": "X-API-Key",
+      "location": "header"
+    }
+  },
+  "definition": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Command Processor API",
+      "version": "1.0.0",
+      "description": "Process natural language commands from Copilot"
+    },
+    "servers": [
+      {
+        "url": "https://your-api-domain.com"
+      }
+    ],
+    "paths": {
+      "/api/copilot/process-command": {
+        "post": {
+          "summary": "Process natural language command",
+          "description": "Understand and execute natural language commands from Copilot",
+          "operationId": "processCommand",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "command": {
+                      "type": "string",
+                      "description": "Natural language command from user"
+                    },
+                    "context": {
+                      "type": "object",
+                      "description": "Additional context for the command"
+                    }
+                  },
+                  "required": ["command"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Command processed successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "description": "Action to be taken"
+                      },
+                      "message": {
+                        "type": "string",
+                        "description": "Response message"
+                      },
+                      "data": {
+                        "type": "object",
+                        "description": "Additional data if needed"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

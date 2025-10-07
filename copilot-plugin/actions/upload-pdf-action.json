@@ -1,0 +1,98 @@
+{
+  "type": "http",
+  "auth": {
+    "type": "apiKey",
+    "apiKey": {
+      "name": "X-API-Key",
+      "location": "header"
+    }
+  },
+  "definition": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "PDF Upload API",
+      "version": "1.0.0",
+      "description": "Upload and summarize PDF documents"
+    },
+    "servers": [
+      {
+        "url": "https://your-api-domain.com"
+      }
+    ],
+    "paths": {
+      "/api/upload-pdf": {
+        "post": {
+          "summary": "Upload and summarize PDF",
+          "description": "Upload a PDF file and get both offline keyword-based and online AI-powered summaries",
+          "operationId": "uploadPDF",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string",
+                      "format": "binary",
+                      "description": "PDF file to upload and process"
+                    }
+                  },
+                  "required": ["file"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "PDF processed successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Unique identifier for the processed PDF"
+                      },
+                      "filename": {
+                        "type": "string",
+                        "description": "Name of the uploaded file"
+                      },
+                      "offline_summary": {
+                        "type": "string",
+                        "description": "Keyword-based summary (always available)"
+                      },
+                      "online_summary": {
+                        "type": "string",
+                        "description": "AI-powered summary (when online)"
+                      },
+                      "text_length": {
+                        "type": "integer",
+                        "description": "Length of extracted text"
+                      },
+                      "has_internet": {
+                        "type": "boolean",
+                        "description": "Whether AI summary was generated"
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "Processing status"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid file or processing error"
+            },
+            "401": {
+              "description": "Authentication required"
+            }
+          }
+        }
+      }
+    }
+  }
+}

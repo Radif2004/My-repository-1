@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resource App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <!-- Posthog Analytics (optional) -->
+    <script>
+      (function(t, e) {
+        if (!e.__SV) {
+          var n = window;
+          var o = document;
+          var a = t.createElement("script");
+          a.type = "text/javascript";
+          a.async = true;
+          a.src =
+            "https://cdn.posthog.com/posthog.js";
+          var s = t.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(a, s);
+          e._i = [];
+          e.init = function(apiKey, config) {
+            function r(t, e) {
+              var i = e.split(".");
+              2 == i.length && ((t = t[i[0]]), (e = i[1]));
+              t[e] = function() {
+                t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+              };
+            }
+            var u = e;
+            if (typeof config !== "undefined") {
+              u = e;
+            } else {
+              config = {};
+            }
+            var c = ["capture", "identify", "alias", "people.set"];
+            for (var i = 0; i < c.length; i++) r(u, c[i]);
+            e._i.push([apiKey, config]);
+          };
+          e.__SV = 1;
+        }
+      })(document, (window.posthog = window.posthog || []));
+      // ✅ use environment variable if injected at build
+      posthog.init("%REACT_APP_POSTHOG_KEY%", { api_host: "https://app.posthog.com" });
+    </script>
+  </body>
+</html>
